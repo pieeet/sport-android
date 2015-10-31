@@ -1,21 +1,21 @@
 {
  "kind": "discovery#restDescription",
- "etag": "\"u_zXkMELIlX4ktyNbM2XKD4vK8E/iwW2fHqZ07pQzONhUpP0isWI9jo\"",
+ "etag": "\"u_zXkMELIlX4ktyNbM2XKD4vK8E/k6Gw4jNuYozmYhyNFWz55R-g3Sk\"",
  "discoveryVersion": "v1",
  "id": "myApi:v1",
  "name": "myApi",
  "version": "v1",
  "description": "This is an API",
- "ownerDomain": "backend.myapplication.piet.example.com",
- "ownerName": "backend.myapplication.piet.example.com",
+ "ownerDomain": "backend.sport.piet.rocdev.com",
+ "ownerName": "backend.sport.piet.rocdev.com",
  "icons": {
   "x16": "http://www.google.com/images/icons/product/search-16.gif",
   "x32": "http://www.google.com/images/icons/product/search-32.gif"
  },
  "protocol": "rest",
- "baseUrl": "https://myApplicationId.appspot.com/_ah/api/myApi/v1/sayHi/",
+ "baseUrl": "https://sportbackend2.appspot.com/_ah/api/myApi/v1/sayHi/",
  "basePath": "/_ah/api/myApi/v1/sayHi/",
- "rootUrl": "https://myApplicationId.appspot.com/_ah/api/",
+ "rootUrl": "https://sportbackend2.appspot.com/_ah/api/",
  "servicePath": "myApi/v1/sayHi/",
  "batchPath": "batch",
  "parameters": {

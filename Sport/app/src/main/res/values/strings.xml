@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Sport</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_voeg_lid_toe">Lid toevoegen</string>
     <string name="roepnaam">Roepnaam</string>
     <string name="tussenvoegsels">Tussenvoegsels</string>
     <string name="achternaam">Achternaam</string>
@@ -16,9 +17,5 @@
         <item>vrouw</item>
     </string-array>
     <string name="verzendLidKnop">Verstuur</string>
-
-
-
-
-
+    <string name="title_activity_main">Sport</string>
 </resources>

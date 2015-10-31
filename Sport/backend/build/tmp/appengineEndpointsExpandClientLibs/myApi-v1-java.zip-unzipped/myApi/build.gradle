@@ -2,7 +2,7 @@ apply plugin: 'java'
 apply plugin: 'maven'
 
 
-group = 'com.example.piet.myapplication.backend'
+group = 'com.rocdev.piet.sport.backend'
 archivesBaseName = 'myApi'
 version = 'v1-1.20.0-SNAPSHOT'
 
