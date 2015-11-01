@@ -4,6 +4,8 @@ import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
 import javax.inject.Named;
@@ -49,5 +51,15 @@ public class LidEndpoint {
         new DatastoreIO().voegLidToe(lid);
         logger.info("Calling insertLid method");
         return lid;
+    }
+
+    /**
+     * haal de lijst met leden
+     * @return ArrayList met leden
+     */
+    @ApiMethod(name = "listLid")
+    public List<Lid> listLid() {
+        ArrayList<Lid> leden = new DatastoreIO().getLeden();
+        return leden;
     }
 }

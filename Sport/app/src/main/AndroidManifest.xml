@@ -25,6 +25,11 @@
             android:label="@string/title_activity_voeg_lid_toe"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
+        <activity
+            android:name=".ListLedenActivity"
+            android:label="@string/title_activity_list_leden"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
     </application>
 
 </manifest>

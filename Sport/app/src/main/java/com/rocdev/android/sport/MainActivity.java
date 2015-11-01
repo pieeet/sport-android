@@ -29,6 +29,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        lijstLedenButton = (Button) findViewById(R.id.lijstLedenButton);
+        lijstLedenButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ListLedenActivity.class);
+                startActivity(intent);
+            }
+        });
 
 //        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {

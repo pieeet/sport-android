@@ -3,6 +3,10 @@ package com.rocdev.piet.sport.backend;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.PreparedQuery;
+import com.google.appengine.api.datastore.Query;
+
+import java.util.ArrayList;
 
 /**
  * Created by piet on 31-10-15.
@@ -29,5 +33,27 @@ public class DatastoreIO {
         e.setProperty("geslacht", lid.getGeslacht());
         e.setProperty("geboortedatum", lid.getGeboortedatum());
         datastore.put(e);
+    }
+
+    public ArrayList<Lid> getLeden() {
+        ArrayList<Lid> leden = new ArrayList<>();
+        Query q = new Query("Lid");
+        PreparedQuery pq = datastore.prepare(q);
+        for (Entity e: pq.asIterable()) {
+            Lid lid = new Lid();
+            lid.setSpelerscode((String) e.getProperty("spelerscode"));
+            lid.setRoepnaam((String) e.getProperty("roepnaam"));
+            lid.setTussenvoegsels((String) e.getProperty("tussenvoegsels"));
+            lid.setAchternaam((String) e.getProperty("achternaam"));
+            lid.setAdres((String) e.getProperty("adres"));
+            lid.setPostcode((String) e.getProperty("postcode"));
+            lid.setWoonplaats((String) e.getProperty("woonplaats"));
+            lid.setTelefoon((String) e.getProperty("telefoon"));
+            lid.setEmail((String) e.getProperty("email"));
+            lid.setGeslacht((String) e.getProperty("geslacht"));
+            lid.setGeboortedatum((String) e.getProperty("geboortedatim"));
+            leden.add(lid);
+        }
+        return leden;
     }
 }

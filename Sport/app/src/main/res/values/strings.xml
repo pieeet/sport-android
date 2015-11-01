@@ -18,4 +18,5 @@
     </string-array>
     <string name="verzendLidKnop">Verstuur</string>
     <string name="title_activity_main">Sport</string>
+    <string name="title_activity_list_leden">Ledenlijst</string>
 </resources>

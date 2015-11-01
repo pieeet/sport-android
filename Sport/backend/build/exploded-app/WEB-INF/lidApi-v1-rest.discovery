@@ -1,6 +1,6 @@
 {
  "kind": "discovery#restDescription",
- "etag": "\"u_zXkMELIlX4ktyNbM2XKD4vK8E/9ROyt-X_ECh35E9b7KXQJ1aDknA\"",
+ "etag": "\"u_zXkMELIlX4ktyNbM2XKD4vK8E/WcPvjOwBiUbgFDGdKmsdA4qjELg\"",
  "discoveryVersion": "v1",
  "id": "lidApi:v1",
  "name": "lidApi",
@@ -114,6 +114,18 @@
      "type": "string"
     }
    }
+  },
+  "LidCollection": {
+   "id": "LidCollection",
+   "type": "object",
+   "properties": {
+    "items": {
+     "type": "array",
+     "items": {
+      "$ref": "Lid"
+     }
+    }
+   }
   }
  },
  "methods": {
@@ -149,6 +161,17 @@
    },
    "response": {
     "$ref": "Lid"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "listLid": {
+   "id": "lidApi.listLid",
+   "path": "lid",
+   "httpMethod": "GET",
+   "response": {
+    "$ref": "LidCollection"
    },
    "scopes": [
     "https://www.googleapis.com/auth/userinfo.email"
