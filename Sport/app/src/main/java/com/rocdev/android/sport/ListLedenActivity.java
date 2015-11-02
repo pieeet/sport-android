@@ -1,16 +1,11 @@
 package com.rocdev.android.sport;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
@@ -19,15 +14,10 @@ import com.rocdev.piet.sport.backend.lidApi.model.Lid;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class ListLedenActivity extends AppCompatActivity {
     ListView listView;
-
     ProgressDialog pDialog;
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,25 +25,39 @@ public class ListLedenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list_leden);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        pDialog = new ProgressDialog(this);
-        pDialog.setMessage("Laden...");
-        pDialog.setTitle("Even geduld");
-        pDialog.show();
 
         listView = (ListView) findViewById(R.id.ledenListView);
-        verversLedenlijst();
-
-
+        new LijstOphaler().execute();
     }
 
 
+    /**
+     * voor een netwerk taak is het verplicht een aparte thread te starten.
+     * Hiervoor gebruik je de AsyncTask klasse.
+     * Bij het maken van de klasse moet je aangeven wat voor type objecten je
+     * gaat gebruiken tusen de vishaken.
+     * In dit geval wordt er niets aan de thread meegegeven en
+     * wordt er een ArrayList met leden teruggegeven als de thread is uitgevoerd
+     * en die je in de onPostExecute methode kunt gebruiken.
+     * zie Android cursus hoofdstuk 6
+     */
+
     class LijstOphaler extends AsyncTask<Void, Void, ArrayList<Lid>> {
 
+        @Override
+        protected void onPreExecute() {
+            pDialog = new ProgressDialog(ListLedenActivity.this);
+            pDialog.setMessage("Laden...");
+            pDialog.setTitle("Even geduld");
+            pDialog.show();
+        }
 
         @Override
         protected ArrayList<Lid> doInBackground(Void... params) {
 
-            //voor localhost
+            //Instantieer de api
+
+            //voor localhost devapp server
 //            LidApi.Builder builder = new LidApi.Builder(AndroidHttp.newCompatibleTransport(),
 //                    new AndroidJsonFactory(), null)
 //                    // options for running against local devappserver
@@ -66,7 +70,8 @@ public class ListLedenActivity extends AppCompatActivity {
 //                            abstractGoogleClientRequest.setDisableGZipContent(true);
 //                        }
 //                    });
-            // end options for devappserver
+            // einde code voor devappserver
+
 
             //app engine appspot (vervang "android-app-backend" met je eigen appspot id)
             LidApi.Builder builder = new LidApi.Builder(AndroidHttp.newCompatibleTransport(), new AndroidJsonFactory(), null)
@@ -80,7 +85,6 @@ public class ListLedenActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
             return leden;
-
         }
 
         protected void onPostExecute(ArrayList<Lid> leden) {
@@ -88,24 +92,6 @@ public class ListLedenActivity extends AppCompatActivity {
             listView = (ListView) findViewById(R.id.ledenListView);
             LedenLijstAdapter adapter = new LedenLijstAdapter(ListLedenActivity.this, leden);
             listView.setAdapter(adapter);
-
         }
     }
-
-
-
-    public void verversLedenlijst() {
-        new LijstOphaler().execute();
-
-
-    }
-
-//    @Override
-//    public void onResume() {
-//        super.onResume();
-//        verversLedenlijst();
-//    }
-
-
-
 }

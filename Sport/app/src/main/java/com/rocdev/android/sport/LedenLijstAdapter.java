@@ -11,11 +11,19 @@ import java.util.ArrayList;
 
 /**
  * Created by piet on 01-11-15.
+ * Adapter die wordt gebruikt in ListLedenActivity klasse
+ *
  */
 public class LedenLijstAdapter extends BaseAdapter {
     private Context context;
     private ArrayList<Lid> leden;
 
+
+    /**
+     * Constructor die een lijst met leden accepteert
+     * @param context
+     * @param leden
+     */
     public LedenLijstAdapter(Context context, ArrayList<Lid> leden) {
         this.context = context;
         this.leden = leden;
@@ -35,6 +43,14 @@ public class LedenLijstAdapter extends BaseAdapter {
         return position;
     }
 
+
+    /**
+     * In deze methode injecteer je de views waar je lijst uit bestaat
+     * @param position
+     * @param convertView
+     * @param parent
+     * @return
+     */
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LidLijstLayout layout;

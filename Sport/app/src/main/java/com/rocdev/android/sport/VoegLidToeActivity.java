@@ -2,8 +2,6 @@ package com.rocdev.android.sport;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -15,12 +13,21 @@ import android.widget.Toast;
 
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
-import com.google.api.client.googleapis.services.AbstractGoogleClientRequest;
-import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
+
+/* Benodigde klassen voor localhost server */
+//import com.google.api.client.googleapis.services.AbstractGoogleClientRequest;
+//import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
 import com.rocdev.piet.sport.backend.lidApi.LidApi;
 import com.rocdev.piet.sport.backend.lidApi.model.Lid;
 
 import java.io.IOException;
+
+/**
+ * Activity die een lid toevoegt middels een endpoint api. Hiervoor gebruik je
+ * de methode insertLid(Lid lid)
+ * Je kunt de endpoint api vinden in de backend map (LidEndpoint klasse)
+ * Het lid wordt opgeslagen in datastore
+ */
 
 public class VoegLidToeActivity extends AppCompatActivity implements View.OnClickListener{
     EditText roepnaamEditText;
@@ -43,15 +50,7 @@ public class VoegLidToeActivity extends AppCompatActivity implements View.OnClic
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
-
+        //maak referenties naar de invoer widgets
         roepnaamEditText = (EditText) findViewById(R.id.roepnaamEditText);
         tussenvoegelsEditText = (EditText) findViewById(R.id.tussenvoegselsEditText);
         achternaamEditText = (EditText) findViewById(R.id.achternaamEditText);
@@ -99,13 +98,39 @@ public class VoegLidToeActivity extends AppCompatActivity implements View.OnClic
 
     }
 
+    /**
+     * voor een netwerk taak is het verplicht een aparte thread te starten.
+     * Hiervoor gebruik je de AsyncTask klasse.
+     * Bij het maken van de klasse moet je aangeven wat voor type objecten je
+     * gaat gebruiken tusen de vishaken.
+     * In dit geval wordt er een Lid object aan de thread meegegeven en
+     * wordt er een String teruggegeven als de thread is uitgevoerd
+     * zie Android cursus hoofdstuk 6
+     */
     class LidToevoeger extends AsyncTask<Lid, Void, String> {
-        private LidApi api = null;
+
+        /**
+         * achtergrond thread
+         * Deze accepteert één, meerdere of een array van Lid objecten als parameter(s), vandaar
+         * de puntjes ...
+         * In dit geval wordt er een lid object meegegeven
+         * In alle gevallen worden de actuele parameters omgezet naar een array,
+         * vandaar dat de lid-parameter moet worden opgevraagd met:
+         * Lid l = params[0];
+         * ook al is er maar één object.
+         */
 
         @Override
         protected String doInBackground(Lid... params) {
 
-            //localhost
+            /**
+             * instantieer je api klasse, afhankelijk van server waar je op werkt
+             * (localhost of appspot.com)
+             * als je wilt wisselen kun je betreffende code (uit)commenten
+             * Om een api object te maken heb je een builder nodig (zie code)
+             */
+
+            //code voor localhost
 //            LidApi.Builder builder = new LidApi.Builder(AndroidHttp.newCompatibleTransport(),
 //                    new AndroidJsonFactory(), null)
 //                    // options for running against local devappserver
@@ -120,22 +145,27 @@ public class VoegLidToeActivity extends AppCompatActivity implements View.OnClic
 //                    });
                     // end options for devappserver
 
-            //app engine appspot (vervang "android-app-backend" met je eigen appspot id)
+
+
+            //code voor app engine appspot (vervang "sportbackend2" met je eigen appspot id)
            LidApi.Builder builder = new LidApi.Builder(AndroidHttp.newCompatibleTransport(), new AndroidJsonFactory(), null)
                     .setRootUrl("https://sportbackend2.appspot.com/_ah/api/");
 
-
-
-            api = builder.build();
-            Lid l = params[0];
+            LidApi api = builder.build();
+            Lid lid = params[0];
             try {
-                api.insertLid(l).execute();
+                api.insertLid(lid).execute();
                 return("Lid toegevoegd");
             } catch (IOException e) {
                 return "Er is iets misgegaan";
             }
         }
 
+
+        /**
+         * nadat thread is uitgevoerd kun je iets met het resultaat doen in de main thread
+         * het resultaat is het return statement van de doInBackground methode
+         */
         protected void onPostExecute(String result) {
             Toast.makeText(VoegLidToeActivity.this.getApplicationContext(), result, Toast.LENGTH_SHORT).show();
         }

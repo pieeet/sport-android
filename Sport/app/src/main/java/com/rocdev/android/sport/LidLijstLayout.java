@@ -9,12 +9,11 @@ import com.rocdev.piet.sport.backend.lidApi.model.Lid;
 
 /**
  * Created by piet on 01-11-15.
+ * Layout (lid_listview_item.xml) die wordt gebruikt in de LedenLijstAdapter klasse
  */
 public class LidLijstLayout extends RelativeLayout {
     TextView naamTextView;
     TextView woonplaatsTextView;
-
-    Context context;
 
     public LidLijstLayout(Context context) {
         super(context);
@@ -22,15 +21,14 @@ public class LidLijstLayout extends RelativeLayout {
 
     public LidLijstLayout(Context context, Lid lid) {
         super(context);
-        this.context = context;
-        //inflate layout
+
+        //boilerplate code (gewoon kopieren...)
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         inflater.inflate(R.layout.lid_listview_item, this, true);
+
         naamTextView = (TextView) findViewById(R.id.naamTextView);
         woonplaatsTextView = (TextView) findViewById(R.id.woonplaatsTextView);
-        naamTextView.setText(lid.getNaam());
-        woonplaatsTextView.setText(lid.getWoonplaats());
-//        setLid(lid);
+        setLid(lid);
 
     }
 
