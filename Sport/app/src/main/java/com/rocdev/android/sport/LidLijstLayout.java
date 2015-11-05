@@ -22,6 +22,8 @@ public class LidLijstLayout extends RelativeLayout {
     public LidLijstLayout(Context context, Lid lid) {
         super(context);
 
+
+
         //boilerplate code (gewoon kopieren...)
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         inflater.inflate(R.layout.lid_listview_item, this, true);
@@ -36,4 +38,6 @@ public class LidLijstLayout extends RelativeLayout {
         naamTextView.setText(lid.getNaam());
         woonplaatsTextView.setText(lid.getWoonplaats());
     }
+
+
 }

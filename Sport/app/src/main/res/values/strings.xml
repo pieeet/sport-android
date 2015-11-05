@@ -17,6 +17,8 @@
         <item>vrouw</item>
     </string-array>
     <string name="verzendLidKnop">Verstuur</string>
+    <string name="wijzigLidKnop">Wijzig</string>
     <string name="title_activity_main">Sport</string>
     <string name="title_activity_list_leden">Ledenlijst</string>
+    <string name="title_activity_wijzig_lid">Wijzig lid</string>
 </resources>

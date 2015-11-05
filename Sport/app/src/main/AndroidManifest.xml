@@ -30,6 +30,11 @@
             android:label="@string/title_activity_list_leden"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
+        <activity
+            android:name=".WijzigLidActivity"
+            android:label="@string/title_activity_wijzig_lid"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
     </application>
 
 </manifest>
