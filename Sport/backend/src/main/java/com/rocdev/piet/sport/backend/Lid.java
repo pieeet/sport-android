@@ -4,6 +4,13 @@ package com.rocdev.piet.sport.backend;
 
 /**
  * Created by piet on 31-10-15.
+ * Een zogenaamde Java Bean of POJO (Plain Old Java Object)
+ * Hier kun je een endpoint van maken door er in de explorer met je rechtse muisknop op
+ * te klikken en kies ... "Generate cloud endpoint from java class". In de endpoint
+ * klasse kun je methodes aanpassen en toevoegen.
+ * Na aanpassen van je endpoint klasse moet je in studio je project met Gradle synchroniseren.
+ * Kies "Tools" --> "Android" --> "Sync project with Gradle Files"
+ *
  */
 public class Lid {
     String spelerscode;

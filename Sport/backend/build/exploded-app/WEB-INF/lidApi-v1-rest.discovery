@@ -1,6 +1,6 @@
 {
  "kind": "discovery#restDescription",
- "etag": "\"u_zXkMELIlX4ktyNbM2XKD4vK8E/WcPvjOwBiUbgFDGdKmsdA4qjELg\"",
+ "etag": "\"u_zXkMELIlX4ktyNbM2XKD4vK8E/q3HZ831UWm9-0gLeRHKTasnvYzw\"",
  "discoveryVersion": "v1",
  "id": "lidApi:v1",
  "name": "lidApi",
@@ -131,18 +131,17 @@
  "methods": {
   "getLid": {
    "id": "lidApi.getLid",
-   "path": "lid/{id}",
+   "path": "lid/{spelerscode}",
    "httpMethod": "GET",
    "parameters": {
-    "id": {
+    "spelerscode": {
      "type": "string",
      "required": true,
-     "format": "int64",
      "location": "path"
     }
    },
    "parameterOrder": [
-    "id"
+    "spelerscode"
    ],
    "response": {
     "$ref": "Lid"

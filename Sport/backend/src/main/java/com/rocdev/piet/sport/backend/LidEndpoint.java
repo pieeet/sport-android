@@ -30,14 +30,14 @@ public class LidEndpoint {
     /**
      * This method gets the <code>Lid</code> object associated with the specified <code>id</code>.
      *
-     * @param id The id of the object to be returned.
+     * @param spelerscode The id of the object to be returned.
      * @return The <code>Lid</code> associated with <code>id</code>.
      */
     @ApiMethod(name = "getLid")
-    public Lid getLid(@Named("id") Long id) {
-        // TODO: Implement this function
+    public Lid getLid(@Named("spelerscode") String spelerscode) {
+        Lid lid = new DatastoreIO().getLid(spelerscode);
         logger.info("Calling getLid method");
-        return null;
+        return lid;
     }
 
     /**
