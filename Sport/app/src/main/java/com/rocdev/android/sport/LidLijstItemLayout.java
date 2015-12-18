@@ -11,15 +11,15 @@ import com.rocdev.piet.sport.backend.lidApi.model.Lid;
  * Created by piet on 01-11-15.
  * Layout (lid_listview_item.xml) die wordt gebruikt in de LedenLijstAdapter klasse
  */
-public class LidLijstLayout extends RelativeLayout {
+public class LidLijstItemLayout extends RelativeLayout {
     TextView naamTextView;
     TextView woonplaatsTextView;
 
-    public LidLijstLayout(Context context) {
+    public LidLijstItemLayout(Context context) {
         super(context);
     }
 
-    public LidLijstLayout(Context context, Lid lid) {
+    public LidLijstItemLayout(Context context, Lid lid) {
         super(context);
 
 

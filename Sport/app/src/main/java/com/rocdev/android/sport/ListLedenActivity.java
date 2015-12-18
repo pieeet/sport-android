@@ -16,8 +16,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class ListLedenActivity extends AppCompatActivity {
-    ListView listView;
-    ProgressDialog pDialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +25,7 @@ public class ListLedenActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        listView = (ListView) findViewById(R.id.ledenListView);
+
         new LijstOphaler().execute();
     }
 
@@ -43,6 +42,9 @@ public class ListLedenActivity extends AppCompatActivity {
      */
 
     class LijstOphaler extends AsyncTask<Void, Void, ArrayList<Lid>> {
+
+        ProgressDialog pDialog;
+        ListView listView = (ListView) findViewById(R.id.ledenListView);
 
         @Override
         protected void onPreExecute() {
@@ -74,7 +76,8 @@ public class ListLedenActivity extends AppCompatActivity {
 
 
             //app engine appspot (vervang "android-app-backend" met je eigen appspot id)
-            LidApi.Builder builder = new LidApi.Builder(AndroidHttp.newCompatibleTransport(), new AndroidJsonFactory(), null)
+            LidApi.Builder builder = new LidApi.Builder(AndroidHttp.newCompatibleTransport(),
+                    new AndroidJsonFactory(), null)
                     .setRootUrl("https://sportbackend2.appspot.com/_ah/api/");
             LidApi api = builder.build();
             ArrayList<Lid> leden = null;
@@ -88,6 +91,7 @@ public class ListLedenActivity extends AppCompatActivity {
         }
 
         protected void onPostExecute(ArrayList<Lid> leden) {
+            ListView listView;
             pDialog.dismiss();
             listView = (ListView) findViewById(R.id.ledenListView);
             LedenLijstAdapter adapter = new LedenLijstAdapter(ListLedenActivity.this, leden);

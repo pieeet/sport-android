@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 
 import com.google.api.client.extensions.android.http.AndroidHttp;
@@ -61,12 +60,12 @@ public class LedenLijstAdapter extends BaseAdapter implements View.OnClickListen
      */
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        LidLijstLayout layout;
+        LidLijstItemLayout layout;
         Lid lid = leden.get(position);
         if (convertView == null) {
-            layout = new LidLijstLayout(context, lid);
+            layout = new LidLijstItemLayout(context, lid);
         } else {
-            layout = (LidLijstLayout) convertView;
+            layout = (LidLijstItemLayout) convertView;
             layout.setLid(lid);
         }
         layout.setTag(lid.getSpelerscode());
